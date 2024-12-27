@@ -84,7 +84,7 @@ class MySet {
 }
 
 
-public class 활용 {
+public class Practice {
     public static void main(String[] args) {
 
 //      Test Code
