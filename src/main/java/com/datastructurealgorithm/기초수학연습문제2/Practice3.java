@@ -1,4 +1,4 @@
-package com.datastructurealgorithm.연습문제풀이2;
+package com.datastructurealgorithm.기초수학연습문제2;
 
 public class Practice3 {
     public static String solution(String equation) {

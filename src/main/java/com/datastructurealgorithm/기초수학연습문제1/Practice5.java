@@ -1,4 +1,4 @@
-package com.datastructurealgorithm.연습문제풀이1;
+package com.datastructurealgorithm.기초수학연습문제1;
 
 public class Practice5 {
     public static int solution(int[][] grid) {
