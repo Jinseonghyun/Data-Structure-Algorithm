@@ -1,4 +1,4 @@
-package com.datastructurealgorithm.연결리스트1;// Practice1
+package com.datastructurealgorithm.연결리스트;// Practice1
 // 단순 연결 리스트 구현 완성
 
 class LinkedList2 extends LinkedList {

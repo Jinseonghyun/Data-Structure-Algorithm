@@ -1,4 +1,4 @@
-package com.datastructurealgorithm.연결리스트문제풀이;// 선형 자료구조 - 스택
+package com.datastructurealgorithm.스택;// 선형 자료구조 - 스택
 
 import java.util.Stack;
 

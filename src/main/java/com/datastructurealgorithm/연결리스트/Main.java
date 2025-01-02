@@ -1,4 +1,4 @@
-package com.datastructurealgorithm.연결리스트1;// 선형 자료구조 - 연결 리스트
+package com.datastructurealgorithm.연결리스트;// 선형 자료구조 - 연결 리스트
 // 단순 연결 리스트 (simple ver.) 기본 구조 구현
 
 // 노드

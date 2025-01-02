@@ -1,92 +1,71 @@
 package com.datastructurealgorithm.연결리스트문제풀이;// Practice2
-// 배열을 이용한 기본 스택 직접 구현
+// Palindrome 연결 리스트
+// 추가 자료구조 없이 연결 리스트만으로 풀어보기
+// Palindrome: 앞으로 읽어도 뒤로 읽어도 같은 문자열
 
-class MyStack2 {
-    int[] arr;
-    int top = -1;
+// 입력 예시)
+// 입력 연결 리스트: 1, 3, 5, 3, 1
+// 결과: true
 
-    MyStack2(int size) {
-        arr = new int[size];
-    }
+// 입력 연결 리스트: 3, 5, 5, 3
+// 결과: true
 
-    public boolean isEmpty() {
-        if (this.top == -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+// 입력 연결 리스트: 1, 3, 5, 1
+// 결과: false
 
-    public boolean isFull() {
-        if (this.top == this.arr.length - 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void push(int data) {
-        if (this.isFull()) {
-            System.out.println("Stack is full!");
-            return;
-        }
-
-        this.top += 1;
-        this.arr[this.top] = data;
-    }
-
-    public Integer pop() {
-        if (this.isEmpty()) {
-            System.out.println("Stack is empty!");
-            return null;
-        }
-
-        int data = this.arr[this.top];
-        this.top -= 1;
-
-        return data;
-    }
-
-    public Integer peek() {
-        if (this.isEmpty()) {
-            System.out.println("Stack is empty!");
-            return null;
-        }
-
-        return this.arr[this.top];
-    }
-
-    public void printStack() {
-        for (int i = 0; i < this.top + 1; i++) {
-            System.out.print(this.arr[i] + " ");
-        }
-        System.out.println();
-    }
-}
 
 public class Practice2 {
+    public static boolean checkPalindrome(LinkedList list) {
+        Node cur = list.head;
+        Node left = list.head;
+        Node right = null;
+
+        int cnt = 0;
+        while (cur != null) {
+            cnt++;
+            right = cur;
+            cur = cur.next;
+        }
+
+        Node prevRight = right;
+        for (int i = 0; i < cnt / 2; i++) {
+            if (left.data != right.data) {
+                return false;
+            }
+
+            left = left.next;
+            right = left;
+            while (right.next != prevRight) {
+                right = right.next;
+            }
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
         // Test code
-        MyStack2 myStack = new MyStack2(5);
-        myStack.isEmpty();
-        myStack.push(1);
-        myStack.push(2);
-        myStack.push(3);
-        myStack.push(4);
-        myStack.push(5);
-        myStack.push(6);
-        myStack.printStack();               // 1, 2, 3, 4, 5
+        LinkedList linkedList = new LinkedList();
+        linkedList.addData(1);
+        linkedList.addData(3);
+        linkedList.addData(5);
+        linkedList.addData(3);
+        linkedList.addData(1);
+        System.out.println(checkPalindrome(linkedList));
 
-        System.out.println(myStack.peek()); // 5
-        myStack.printStack();               // 1, 2, 3, 4, 5
+        LinkedList linkedList2 = new LinkedList();
+        linkedList2.addData(3);
+        linkedList2.addData(5);
+        linkedList2.addData(5);
+        linkedList2.addData(3);
+        System.out.println(checkPalindrome(linkedList2));
 
-        System.out.println(myStack.pop());  // 5
-        System.out.println(myStack.pop());  // 4
-        myStack.printStack();               // 1, 2, 3
+        LinkedList linkedList3 = new LinkedList();
+        linkedList3.addData(1);
+        linkedList3.addData(3);
+        linkedList3.addData(5);
+        linkedList3.addData(1);
+        System.out.println(checkPalindrome(linkedList3));
 
-        System.out.println(myStack.pop());  // 3
-        System.out.println(myStack.pop());  // 2
-        System.out.println(myStack.pop());  // 1
-        myStack.printStack();
     }
 }
