@@ -1,134 +1,75 @@
 package com.datastructurealgorithm.연결리스트문제풀이;// Practice1
-// 단방향 연결 리스트에서 중복 데이터를 찾아 삭제하세요.
+// ArrayList 를 이용한 스택 구현
 
-// 입출력 예시)
-// 입력 연결 리스트: 1, 3, 3, 1, 4, 2, 4, 2
-// 결과 연결 리스트: 1, 3, 4, 2
+import java.util.ArrayList;
 
+class MyStack1 {
+    ArrayList list;
 
-class Node {
-    int data;
-    Node next;
-
-    Node() {}
-    Node(int data, Node next) {
-        this.data = data;
-        this.next = next;
-    }
-}
-
-class LinkedList {
-    Node head;
-
-    LinkedList() {}
-    LinkedList(Node node) {
-        this.head = node;
+    MyStack1() {
+        this.list = new ArrayList();
     }
 
     public boolean isEmpty() {
-        return this.head == null;
-    }
-
-    public void addData(int data) {
-        if (this.head == null) {
-            this.head = new Node(data, null);
+        if (this.list.size() == 0) {
+            return true;
         } else {
-            Node cur = this.head;
-            while (cur.next != null) {
-                cur = cur.next;
-            }
-            cur.next = new Node(data, null);
-        }
-    }
-
-    public void removeData(int data) {
-        if (this.isEmpty()) {
-            System.out.println("List is empty");
-            return;
-        }
-
-        Node cur = this.head;
-        Node pre = cur;
-        while (cur != null) {
-            if (cur.data == data) {
-                if (cur == this.head) {
-                    this.head = cur.next;
-                } else {
-                    pre.next = cur.next;
-                }
-                break;
-            }
-
-            pre = cur;
-            cur = cur.next;
-        }
-    }
-
-    public boolean findData(int data) {
-        if (this.isEmpty()) {
-//            System.out.println("List is empty");
             return false;
         }
-
-        Node cur = this.head;
-        while (cur != null) {
-            if (cur.data == data) {
-//                System.out.println("Data exist!");
-                return true;
-            }
-            cur = cur.next;
-        }
-//        System.out.println("Data not found!");
-        return false;
     }
 
-    public void showData() {
+    public void push(int data) {
+        this.list.add(data);
+    }
+
+    public Integer pop() {
         if (this.isEmpty()) {
-            System.out.println("List is empty!");
-            return;
+            System.out.println("Stack is empty!");
+            return null;
         }
 
-        Node cur = this.head;
-        while (cur != null) {
-            System.out.print(cur.data + " ");
-            cur = cur.next;
+        int data = (int)this.list.get(this.list.size() - 1);
+        this.list.remove(this.list.size() - 1);
+        return data;
+    }
+
+    public Integer peek() {
+        if (this.isEmpty()) {
+            System.out.println("Stack is empty!");
+            return null;
         }
-        System.out.println();
+
+        int data = (int)this.list.get(this.list.size() - 1);
+        return data;
+    }
+
+    public void printStack() {
+        System.out.println(this.list);
     }
 }
 
-
 public class Practice1 {
-    public static LinkedList removeDup(LinkedList listBefore) {
-        LinkedList listAfter = new LinkedList();
-
-        Node cur = listBefore.head;
-        while (cur != null) {
-            if (listAfter.findData(cur.data) == false) {
-                listAfter.addData(cur.data);
-            }
-
-            cur = cur.next;
-        }
-
-        return listAfter;
-    }
-
     public static void main(String[] args) {
         // Test code
-        LinkedList linkedList = new LinkedList();
-        linkedList.addData(1);
-        linkedList.addData(3);
-        linkedList.addData(3);
-        linkedList.addData(1);
-        linkedList.addData(4);
-        linkedList.addData(2);
-        linkedList.addData(4);
-        linkedList.addData(2);
-        linkedList.showData();  // 1 3 3 1 4 2 4 2
+        MyStack1 myStack = new MyStack1();
+        myStack.isEmpty();
+        myStack.push(1);
+        myStack.push(2);
+        myStack.push(3);
+        myStack.push(4);
+        myStack.push(5);
+        myStack.printStack();               // 1, 2, 3, 4, 5
 
-        linkedList = removeDup(linkedList);
-        linkedList.showData();  // 1 3 4 2
+        System.out.println(myStack.peek()); // 5
+        myStack.printStack();               // 1, 2, 3, 4, 5
 
+        System.out.println(myStack.pop());  // 5
+        System.out.println(myStack.pop());  // 4
+        myStack.printStack();               // 1, 2, 3
+
+        System.out.println(myStack.pop());  // 3
+        System.out.println(myStack.pop());  // 2
+        System.out.println(myStack.pop());  // 1
+        myStack.printStack();
     }
 }

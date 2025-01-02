@@ -1,4 +1,4 @@
-package com.datastructurealgorithm.연결리스트문제풀이;// Practice3
+package com.datastructurealgorithm.연결리스트2;// Practice3
 // 연결 리스트 부분 뒤집기
 // 주어진 연결 리스트에서 시작 위치부터 끝 위치 사이의 노드들을 뒤집으시오.
 
